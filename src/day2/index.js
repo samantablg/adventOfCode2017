@@ -19,34 +19,58 @@ function getMin(array) {
       }
     }
   
-    return min;
-  } 
+  return min;
+} 
   
-  function getMax(array) {
-    let max = array[0];
-    for(let i = 0; i < array.length-1; i++) {
-      if (array[i+1] > array[i] & array[i+1] >= max) {
-        max = array[i+1];
-      }
+function getMax(array) {
+  let max = array[0];
+  for(let i = 0; i < array.length-1; i++) {
+    if (array[i+1] > array[i] & array[i+1] >= max) {
+      max = array[i+1];
     }
-  
-    return max;
-  } 
-  
-  function checkSum(inputArray) {
-    let sum = 0;
-
-    inputArray.forEach(line => {
-      console.log(line);
-      sum += getMax(line) - getMin(line); 
-    });
-  
-    return sum;
   }
   
-  let testInput = processInput(input);
-  const proof = checkSum(testInput);
-  console.log(proof);
+  return max;
+} 
+  
+function checkSum(inputArray) {
+  let sum = 0;
+
+  inputArray.forEach(line => {
+  console.log(line);
+  sum += getMax(line) - getMin(line); 
+  });
+  
+  return sum;
+}
+
+function getResultRow(array) {
+  let value;
+
+    for(let i = 0; i < array.length; i++) {
+      for(let j = 0; j < array.length; j++) {
+        if (array[i] % array [j] == 0 && array[i] !== array[j]) {
+          value = array[i]/array[j];
+        }
+      } 
+    }
+  
+  return value;
+}
+  
+function getResult(inputArray) {
+  let sum = 0;
+  
+  inputArray.forEach(line => {
+  sum += getResultRow(line); 
+  });
+    
+  return sum;
+}
+ 
+let testInput = processInput(input);
+const sumRank = checkSum(testInput);
+const sumDivision = getResult(testInput);
   
 
 module.exports = checkSum;
